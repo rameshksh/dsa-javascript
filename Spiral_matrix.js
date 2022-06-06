@@ -3,7 +3,7 @@
  *
  */
 
-function sprialOrder(matrix) {
+function spiralOrder(matrix) {
 
     const spiralMatrix = [];
 
@@ -12,21 +12,21 @@ function sprialOrder(matrix) {
     }
 
     let top = 0;
-    let bottom = matrix.length;
+    let bottom = matrix.length - 1;
     let left = 0;
-    let right = matrix.length;
+    let right = matrix[0].length - 1;
     let dir = "right";
 
-    while (top >= bottom && left <= right) {
+    while (top <= bottom && left <= right) {
 
         if (dir === "right") {
-            for (let i = left; i < right; i++) {
+            for (let i = left; i <= right; i++) {
                 spiralMatrix.push(matrix[top][i]);
             }
             top++;
             dir = "down";
         } else if (dir === "down") {
-            for (let i = top; i < bottom; i++) {
+            for (let i = top; i <= bottom; i++) {
                 spiralMatrix.push(matrix[i][right]);
             }
             right--;
@@ -38,7 +38,7 @@ function sprialOrder(matrix) {
             bottom--;
             dir = "up";
         } else if (dir === "up") {
-            for (let i = bottom; i > top; i--) {
+            for (let i = bottom; i >= top; i--) {
                 spiralMatrix.push(matrix[i][left]);
             }
             left++;
@@ -46,4 +46,7 @@ function sprialOrder(matrix) {
         }
     }
 
+    return spiralMatrix;
 }
+
+spiralOrder([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
